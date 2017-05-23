@@ -1,36 +1,42 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="css/styles.css">
-    <title>No Cookie Shopping List</title>
-  </head>
-  <body ng-app='MenuApp'>
-    <h1>Welcome to Premade No Cookie Shopping List</h1>
+<!doctype html>
+<html lang="en" ng-app="MenuApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Menu App</title>
 
+    <link rel="stylesheet" href="lib/bootstrap/bootstrap.min.css">
+</head>
+<body>
+
+
+<div class="page-header">
+    <h1 class="text-center">Welcome to our Restaurant</h1>
+</div>
+
+<div class="container">
     <ui-view></ui-view>
+</div>
 
-    <loading-spinner></loading-spinner>
+<!-- Angular dependencies -->
+<script src="lib/angular/angular.min.js"></script>
+<script src="lib/angular/angular-ui-router.min.js"></script>
 
-    <!-- Libraries -->
-    <script src="lib/angular.min.js"></script>
-    <script src="lib/angular-ui-router.min.js"></script>
+<!-- Modules -->
+<script src="src/menuapp/menuapp.module.js"></script>
+<script src="src/menuapp/menudata.service.js"></script>
 
-    <!-- Modules -->
-    <script src="src/shoppinglist/shoppinglist.module.js"></script>
-    <script src="src/spinner/spinner.module.js"></script>
+<!-- Routes -->
+<script src="src/routes.js"></script>
 
-    <!-- Routes -->
-    <script src="src/routes.js"></script>
+<!-- Categories -->
+<script src="src/menuapp/categories/categories.component.js"></script>
+<script src="src/menuapp/categories/categories.controller.js"></script>
 
-    <!-- 'MenuApp' module artifacts -->
-    <script src="src/shoppinglist/shoppinglist.component.js"></script>
-    <script src="src/shoppinglist/main-shoppinglist.controller.js"></script>
-    <script src="src/shoppinglist/shoppinglist.service.js"></script>
-    <script src="src/shoppinglist/item-detail.controller.js"></script>
-
-    <!-- 'Spinner' module artifacts -->
-    <script src="src/spinner/loadingspinner.component.js"></script>
-
-  </body>
+<!-- Category Details -->
+<script src="src/menuapp/category-detail/category-detail.controller.js"></script>
+<!--<script src="src/menuapp/categories/categories.controller.js"></script>-->
+</body>
 </html>

@@ -1,42 +1,45 @@
 (function () {
-'use strict';
+    'use strict';
 
-angular.module('MenuApp')
-.config(RoutesConfig);
+    angular.module("MenuApp")
+        .config(RouteConfig);
 
-RoutesConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
-function RoutesConfig($stateProvider, $urlRouterProvider) {
 
-  // Redirect to home page if no other URL matches
-  $urlRouterProvider.otherwise('/');
+    RouteConfig.injector = ["$stateProvider", "$urlRouterProvider"];
+    function RouteConfig($stateProvider, $urlRouterProvider) {
 
-  // *** Set up UI states ***
-  $stateProvider
+        $urlRouterProvider.otherwise("/");
 
-  // Home page
-  .state('home', {
-    url: '/',
-    templateUrl: 'src/shoppinglist/templates/home.template.html'
-  })
+        $stateProvider
 
-  // Premade list page
-  .state('mainList', {
-    url: '/main-list',
-    templateUrl: 'src/shoppinglist/templates/main-shoppinglist.template.html',
-    controller: 'MainShoppingListController as mainList',
-    resolve: {
-      items: ['ShoppingListService', function (ShoppingListService) {
-        return ShoppingListService.getItems();
-      }]
+            .state("home", {
+                url: "/",
+                templateUrl: "src/menuapp/templates/home.template.html"
+            })
+
+
+            .state("categories", {
+                url: "/categories",
+                templateUrl: "src/menuapp/categories/categories.template.html",
+                controller: "CategoriesController as categoryCtrl",
+                resolve: {
+                    items: ["MenuDataService", function (MenuDataService) {
+                        return MenuDataService.getAllCategories();
+                    }]
+                }
+            })
+
+            .state("categories.category-detail", {
+                url: "/{categoryId}",
+                templateUrl: "src/menuapp/category-detail/category-detail.template.html",
+                controller: "CategoryDetailController as categoryDetailCtrl",
+                resolve: {
+                    items: ["MenuDataService", "$stateParams", function (MenuDataService, $stateParams) {
+                        return MenuDataService.getItemsForCategory($stateParams.categoryId);
+                    }]
+                }
+            });
     }
-  })
 
-  .state('mainList.itemDetail', {
-    url: '/item-detail/{itemId}',
-    templateUrl: 'src/shoppinglist/templates/item-detail.template.html',
-    controller: "ItemDetailController as itemDetail"
-  });
-
-}
-
-})();
+})
+();
