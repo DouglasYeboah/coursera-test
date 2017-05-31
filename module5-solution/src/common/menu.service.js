@@ -5,8 +5,8 @@ angular.module('common')
 .service('MenuService', MenuService);
 
 
-MenuService.$inject = ['$http', 'ApiPath','$rootScope'];
-function MenuService($http, ApiPath,$rootScope) {
+MenuService.$inject = ['$http', 'ApiPath'];
+function MenuService($http, ApiPath) {
   var service = this;
 
   service.getCategories = function () {
@@ -27,12 +27,12 @@ function MenuService($http, ApiPath,$rootScope) {
     });
   };
 
-  service.getItem = function (itemshortname){
-    return $http({method: "GET",url: ("https://let369-module5.herokuapp.com/menu_items/"+ itemshortname +".json")})
-    .then(function (response) {
+  service.getMenuItem = function(menuNumber) {
+    return $http.get(ApiPath + '/menu_items/' + menuNumber + '.json').then(function (response) {
       return response.data;
     });
-  }
+  };
+
 }
 
 

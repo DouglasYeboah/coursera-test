@@ -1,0 +1,20 @@
+<div class="container" ng-controller="MyInfoController as ctrl">
+    <div class="text-center">
+    <h1>My Info</h1>
+    <div ng-if="!ctrl.valid">
+        <span>Not Signed Up Yet.</span><br>
+        <span><a ui-sref="public.signup">Sign Up Now!</a></span>
+    </div>
+    <div ng-if="ctrl.valid">
+        <span>First name: {{ ctrl.user.firstName }}</span><br>
+        <span>Last name: {{ ctrl.user.lastName }}</span><br>
+        <span>Email name: {{ ctrl.user.email }}</span><br>
+        <span>Phone number: {{ ctrl.user.phoneNumber }}</span><br>
+        <span>Menu number: {{ ctrl.user.menuNumber }}</span><br>
+        <div ng-if="!ctrl.user.menuInalid">
+        <menu-item menu-item="ctrl.menuItem"></menu-item>
+        </div>
+    <!--</div>-->
+        <!--<span>{{ ctrl.user }}</span>-->
+    <!--</div>-->
+</div>

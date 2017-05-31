@@ -1,0 +1,87 @@
+<div class="container" ng-controller="SignUpController as ctrl" >
+    <div  class="text-center">
+<h1>Sign Up</h1>
+<form name="formSignUp" novalidate>
+    <input type="text" name="firstName" placeholder="First name"
+            ng-model="ctrl.user.firstName"
+            ng-min-length="1"
+            required>
+    <span
+        ng-if="(formSignUp.firstName.$error.minlength ||
+            formSignUp.firstName.$error.required) &&
+            formSignUp.firstName.$touched">
+        First name is required
+    </span>
+    <br>
+    <input type="text" name="lastName" placeholder="Last name"
+            ng-model="ctrl.user.lastName"
+            ng-min-lenth="1"
+            required>
+    <span
+            ng-if="(formSignUp.lastName.$error.minlength ||
+            formSignUp.lastName.$error.required) &&
+            formSignUp.lastName.$touched">
+        Last name is required
+    </span>
+    <br>
+
+    <input type="email" name="email" placeholder="you@example.com"
+            ng-model="ctrl.user.email"
+            required>
+    <span
+            ng-if="formSignUp.email.$invalid && formSignUp.email.$touched">
+        Email is required
+    </span>
+    <br>
+
+    <input type="phone" name="phoneNumber" placeholder="XXX-XXX-XXXX"
+            ng-model="ctrl.user.phoneNumber"
+            pattern="(\d{3})-(\d{3})-(\d{4})"
+            required>
+    <span
+            ng-if="formSignUp.phoneNumber.$invalid && formSignUp.phoneNumber.$touched">
+        Phone number is required
+    </span>
+    <br>
+
+    <input type="text" name="menuNumber" placeholder="Number of your favorite menu"
+            ng-model="ctrl.user.menuNumber">
+            <!--ng-min-length="1"-->
+            <!--required>-->
+    <!--<span-->
+            <!--ng-if="(formSignUp.menuNumber.$error.minlength ||-->
+            <!--formSignUp.menuNumber.$error.required) &&-->
+            <!--formSignUp.menuNumber.$touched">-->
+        <!--Menu number is required-->
+    <!--</span>-->
+    <span
+            ng-if="ctrl.user.menuInvalid &&
+            formSignUp.menuNumber.$touched">
+        No such menu number exists.
+    </span>
+    <br>
+
+    <button
+        ng-disabled="formSignUp.$invalid"
+        ng-click="ctrl.submit()">
+        Submit
+    </button>
+
+    <div ng-if="ctrl.saved">
+        Your information has been saved.
+    </div>
+
+    <!--<div id="info" ng-if="ctrl.completed">-->
+        <!--First name: {{ ctrl.user.firstName }} <br>-->
+        <!--Last name: {{ ctrl.user.lastName }} <br>-->
+        <!--Email: {{ ctrl.user.email }} <br>-->
+        <!--Phone: {{ ctrl.user.phoneNumber }} <br>-->
+        <!--Menu number: {{ ctrl.user.menuNumber }}<br>-->
+        <!--Menu invalid: {{ ctrl.user.menuInvalid }} <br>-->
+    <!--</div>-->
+<!--<div>-->
+    <!--<span>{{ ctrl.user }}</span>-->
+<!--</div>-->
+</form>
+</div>
+</div>

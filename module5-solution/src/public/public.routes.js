@@ -41,13 +41,13 @@ function routeConfig ($stateProvider) {
         }]
       }
     })
-    .state('public.form',{
-      url:'/form',
-      templateUrl:'src/public/form.html'
+    .state('public.signup', {
+      url: '/signup',
+      templateUrl: 'src/public/signup/signup.html'
     })
-    .state('public.info',{
-      url:'/info',
-      templateUrl:'src/public/info.html',
+    .state('public.myinfo', {
+      url: '/myinfo',
+      templateUrl: 'src/public/myinfo/myinfo.html'
     });
 }
 })();
